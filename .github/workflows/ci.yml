@@ -1,0 +1,35 @@
+name: Pipeline CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validar-projeto:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências
+        run: npm install
+
+      - name: Validar HTML
+        run: npm run lint:html
+
+      - name: Validar CSS
+        run: npm run lint:css
+
+      - name: Executar testes
+        run: npm test
