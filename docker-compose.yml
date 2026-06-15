@@ -1,0 +1,7 @@
+services:
+  comparador-precos:
+    build: .
+    container_name: comparador-precos
+    ports:
+      - "8080:80"
+    restart: unless-stopped
